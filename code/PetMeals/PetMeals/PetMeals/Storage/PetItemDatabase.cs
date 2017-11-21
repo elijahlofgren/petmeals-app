@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using SQLite;
 using PetMeals.Models;
+using System.Diagnostics;
 
 namespace PetMeals.Storage
 {
@@ -11,8 +12,17 @@ namespace PetMeals.Storage
 
         public PetItemDatabase(string dbPath)
         {
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<Item>().Wait();
+            Debug.WriteLine("Preparing to create DB:");
+            try
+            {
+                database = new SQLiteAsyncConnection(dbPath);
+                database.CreateTableAsync<Item>().Wait();
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine("Error creating DB:");
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         public Task<List<Item>> GetItemsAsync()

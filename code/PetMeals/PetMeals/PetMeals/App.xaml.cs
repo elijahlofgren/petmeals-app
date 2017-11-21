@@ -47,7 +47,7 @@ namespace PetMeals
                 {
                     database = new PetItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("PetsSQLite.db3"));
                 }
-
+                /* This code could be used to prepopulate example data.
                 var _items = new List<Item>
             {
                 new Item { Text = "Buy some cat food", Description="The cats are hungry"},
@@ -62,7 +62,7 @@ namespace PetMeals
                 {
                     database.SaveItemAsync(item);
                 }
-
+                */
                 return database;
             }
         }

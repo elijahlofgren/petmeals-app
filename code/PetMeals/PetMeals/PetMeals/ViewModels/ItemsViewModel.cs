@@ -27,7 +27,8 @@ namespace PetMeals.ViewModels
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
                 var _item = item as Item;
-                Items.Add(_item);
+                //Items.Add(_item);
+                //await DataStore.AddItemAsync(item);
                 await _database.SaveItemAsync(_item);
                 // Refresh list of items.
                 await ExecuteLoadItemsCommand();

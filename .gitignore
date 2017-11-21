@@ -2,3 +2,5 @@
 /code/PetMeals/packages
 bin
 obj
+
+*.userprefs
