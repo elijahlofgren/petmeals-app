@@ -29,10 +29,18 @@ namespace PetMeals.Views
         }
 
 
-        void Handle_FeedClicked(object sender, System.EventArgs e)
+        async void Handle_FeedClicked(object sender, System.EventArgs e)
         {
-            _database.SaveFeedingAsync(new Feeding { PetId = viewModel.Item.ID, TimeFed = DateTime.Now });
+            await _database.SaveFeedingAsync(new Feeding { PetId = viewModel.Item.ID, TimeFed = DateTime.Now });
+            await viewModel.ExecuteLoadFeedingsCommand();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Feedings.Count == 0)
+                viewModel.LoadFeedingsCommand.Execute(null);
+        }
     }
 }

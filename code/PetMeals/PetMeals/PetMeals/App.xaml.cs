@@ -27,7 +27,7 @@ namespace PetMeals
                 {
                     new NavigationPage(new ItemsPage(Database))
                     {
-                        Title = "Browse",
+                        Title = "Pets",
                         Icon = Device.OnPlatform("tab_feed.png",null,null)
                     },
                     new NavigationPage(new AboutPage())

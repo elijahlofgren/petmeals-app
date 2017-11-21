@@ -27,7 +27,7 @@ namespace PetMeals.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item), _database));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item, _database), _database));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;

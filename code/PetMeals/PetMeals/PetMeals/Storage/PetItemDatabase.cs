@@ -31,11 +31,20 @@ namespace PetMeals.Storage
             return database.Table<Item>().ToListAsync();
         }
 
+
+        public Task<List<Feeding>> GetFeedingsAsync(int petId)
+        {
+            return database.Table<Feeding>().Where(f => f.PetId == petId).ToListAsync();
+        }
+
+
+        /*
         public Task<List<Item>> GetItemsNotDoneAsync()
         {
             return database.QueryAsync<Item>("SELECT * FROM [Item]");
             //return database.QueryAsync<Item>("SELECT * FROM [Item] WHERE [Done] = 0");
         }
+        */
 
         /*
         public Task<Item> GetItemAsync(int id)

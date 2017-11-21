@@ -6,5 +6,31 @@
 	<StackLayout Spacing="20" Padding="15">
 		<Label Text="{Binding Item.Text}" FontSize="Medium"/>
         <Button Clicked="Handle_FeedClicked" Text="Feed!" />
+
+         <ListView x:Name="FeedingsListView"
+                ItemsSource="{Binding Feedings}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadFeedingsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+                <Label Text="{Binding PetId}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16"/>
+                <Label Text="{Binding TimeFed}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="13"/>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
     </StackLayout>
 </ContentPage>
