@@ -11,9 +11,11 @@ namespace PetMeals.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
+        PetItemDatabase _database;
 
         public ItemsPage(PetItemDatabase database)
         {
+            _database = database;
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel(database);
@@ -25,7 +27,7 @@ namespace PetMeals.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item), _database));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;

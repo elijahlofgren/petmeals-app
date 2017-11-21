@@ -12,15 +12,16 @@ namespace PetMeals.Storage
 
         public PetItemDatabase(string dbPath)
         {
-            Debug.WriteLine("Preparing to create DB:");
+            Debug.WriteLine("Preparing to connect to DB...");
             try
             {
                 database = new SQLiteAsyncConnection(dbPath);
                 database.CreateTableAsync<Item>().Wait();
+                database.CreateTableAsync<Feeding>().Wait();
             }
             catch (SQLiteException ex)
             {
-                Debug.WriteLine("Error creating DB:");
+                Debug.WriteLine("Error connecting to DB:");
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -54,6 +55,19 @@ namespace PetMeals.Storage
                 return database.InsertAsync(item);
             }
         }
+
+        public Task<int> SaveFeedingAsync(Feeding item)
+        {
+            if (item.ID != 0)
+            {
+                return database.UpdateAsync(item);
+            }
+            else
+            {
+                return database.InsertAsync(item);
+            }
+        }
+
 
         public Task<int> DeleteItemAsync(Item item)
         {
