@@ -12,11 +12,11 @@ namespace PetMeals.Views
     {
         ItemsViewModel viewModel;
 
-        public ItemsPage(PetItemDatabase Database)
+        public ItemsPage(PetItemDatabase database)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new ItemsViewModel(database);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

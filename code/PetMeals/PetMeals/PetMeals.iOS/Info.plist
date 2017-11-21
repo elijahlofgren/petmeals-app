@@ -5,9 +5,9 @@
 	<key>CFBundleDisplayName</key>
 	<string>PetMeals.iOS</string>
 	<key>CFBundleName</key>
-	<string>PetMeals.iOS</string>
+	<string>PetMeals</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.PetMeals</string>
+	<string>com.elijahlofgren.PetMeals</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
